@@ -1,5 +1,8 @@
-# Hackathon 2 Prep
+# HACKATHON 2
+## COMP2633-02, JORDAN KIDNEY
+### TEAM: GAURIK KHULLAR, LUKE LUKE AND JEREMY SCOTT
 
+# THE IDEA
 ## DEDICATED ARTIFICIAL INTELLIGENCE FOR STUDENTS IN COMPUTING: ALFRED  
 **Autonomous Learning Framework for Reasoning, Explanation & Decision-making**
 
