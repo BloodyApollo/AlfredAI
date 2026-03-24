@@ -44,8 +44,6 @@ Our solution: a dedicated AI for students, which would guide their learning with
    a. The interface should only have essential elements on screen  
    b. The interface should have useful links for students  
 
-   https://news.harvard.edu/gazette/story/2025/11/is-ai-dulling-our-minds/
-
    i. The useful links include and are not necessarily limited to: university page, D2L homepage, MRU graduate etc.  
 
 2. The interface should accessible  
@@ -191,7 +189,7 @@ Using multiple architectures reduces complexity and mixing up of logic and code,
 ---
 
 ### Fairly familiar (Minimal training required)  
-Expected to learn latest by Sunday, March 22, 2026)
+(Expected to learn latest by Sunday, March 22, 2026)
 
 1. CSS – for the non-essential design of the website UI  
 2. JavaScript and Libraries – for backend logic and potential UI implementation  
@@ -199,9 +197,8 @@ Expected to learn latest by Sunday, March 22, 2026)
 ---
 
 ### Unfamiliar Tools (Require learning)  
-Expected to learn as required throughout Week 2  
+(Expected to learn as required throughout Week 2)
 
 1. Google Gemini API – AI model for generating responses and recommendations  
 2. Firebase Authentication – secure user login and credential management  
 3. Firebase Firestore – cloud database for storing user data and app data
-  
