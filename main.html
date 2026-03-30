@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Inititation | ALFRED</title>
+</head>
+
+<body>
+
+    <p id="p1" class="intro-p"><span class="team-intro">The Skywalkers</span> present <span
+            class="ai-intro">ALFRED</span></p>
+    <p id="p2" class="intro-p">The Autonomous Learning Framework for Reasoning, Explanation & Decision-making</p>
+    <p id="p3" class="intro-p">Let's make <span class="ai-intro">ALFRED</span> truly yours.</p>
+
+    <div id="name-stage">
+        <p class="username-prompt">What shall we call you?</p>
+        <input type="text" id="username" class="intro-tile-name" placeholder="Bruce Wayne" autocomplete="off" autofocus>
+    </div>
+
+    <div id="comment-name" class="hidden">
+        <p class="username-prompt">I am sorry you have to live with that.</p>
+    </div>
+
+    <div id="age-stage" class="hidden">
+        <p class="username-prompt">How long has it been since you graced this planet?</p>
+        <input type="number" id="userage" class="intro-tile-name" placeholder="21" autocomplete="off">
+    </div>
+
+    <div id="comment-age" class="hidden">
+        <p class="username-prompt stagger-1">Damn!</p>
+        <p class="username-prompt secondary-line stagger-2">Apologies, my allergies were acting up.</p>
+        <p class="username-prompt tertiary-line stagger-3">Anyway...</p>
+    </div>
+
+    <div id="welcome-stage" class="hidden">
+        <p class="username-prompt">Welcome, <span id="display-name" style="color: var(--frost-tint);"></span>.</p>
+        <a href="aipage.html" id="final-link" class="intro-tile-name link-button">Step into the Future</a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
