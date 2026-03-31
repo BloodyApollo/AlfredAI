@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             displayName.textContent = userData.name;
             transitionTo(stages.age, stages.commentAge);
 
+            finalLink.href = `http://localhost:5173/?name=${userData.name}&age=${userData.age}`;
+
             // THE ONE-BY-ONE STAGGER LOGIC
             // Delay 1: "Damn!"
             setTimeout(() => {
