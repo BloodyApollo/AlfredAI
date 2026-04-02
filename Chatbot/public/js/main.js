@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayName.textContent = userData.name;
             transitionTo(stages.age, stages.commentAge);
 
-            finalLink.href = `/?name=${userData.name}&age=${userData.age}`;
+            finalLink.href = `/chat/?name=${userData.name}&age=${userData.age}`;
 
             // THE ONE-BY-ONE STAGGER LOGIC
             // Delay 1: "Damn!"
