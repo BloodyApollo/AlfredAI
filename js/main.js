@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             displayName.textContent = userData.name;
             transitionTo(stages.age, stages.commentAge);
 
-            finalLink.href = `/chat/?name=${userData.name}&age=${userData.age}`;
-
             // THE ONE-BY-ONE STAGGER LOGIC
             // Delay 1: "Damn!"
             setTimeout(() => {
@@ -78,7 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 transitionTo(stages.commentAge, stages.welcome);
                 setTimeout(() => {
                     stages.welcome.querySelector('.username-prompt').classList.add('enter-now');
-                    setTimeout(() => finalLink.classList.add('enter-now'), 1000);
+		    setTimeout(() => {
+		         finalLink.href = `/chat/?name=${userData.name}&age=${userData.age}`;
+                         finalLink.classList.add('enter-now');
+       		     }, 1000);
                 }, 1600);
             }, 7500);
         }
