@@ -35,6 +35,42 @@
         <p class="username-prompt tertiary-line stagger-3">Anyway...</p>
     </div>
 
+    <div id="account-confirmation" class="hidden">
+        <p class="account-prompt">Do you have an account with us?</p>
+        <form>
+            <input type="radio" id="yes" name="agreement" value="yes">
+            <label for="yes">I have an account</label><br>
+  
+            <input type="radio" id="no" name="agreement" value="no">
+            <label for="no">I do not have an account</label>
+        </form>
+    </div>
+
+    <div id="account-creation-confirmation" class="hidden">
+        <p class="account-prompt">Would you like to create one?</p>
+        <form>
+            <input type="radio" id="yes" name="agreement" value="yes">
+            <label for="yes">Yes</label> <br>
+  
+            <input type="radio" id="no" name="agreement" value="no">
+            <label for="no">Use system as a Guest</label>
+        </form>
+    </div>
+
+    <div id="sign-up-page" class="hidden">
+        <p class="email-prompt">Please enter the email you would like to use for your account.</p>
+        <input type="text" id="user-email" class="intro-tile-name" placeholder="person@something.com" autocomplete="off">
+        <p class="password-prompt">Choose a password for your account.</p>
+        <input type="text" id="user-password" class="intro-tile-name" placeholder="totally-secure6969" autocomplete="off">
+    </div>
+
+    <div id="sign-in-page" class="hidden">
+        <p class="email-prompt">Welcome back, </p>
+        <input type="text" id="user-email" class="intro-tile-name" placeholder="person@something.com" autocomplete="off">
+        <p class="password-prompt">Choose a password for your account.</p>
+        <input type="text" id="user-password" class="intro-tile-name" placeholder="totally-secure6969" autocomplete="off">
+    </div>
+
     <div id="welcome-stage" class="hidden">
         <p class="username-prompt">Welcome, <span id="display-name" style="color: var(--frost-tint);"></span>.</p>
         <a href="/chat/" id="final-link" class="intro-tile-name link-button">Step into the Future</a>
