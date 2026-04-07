@@ -5,75 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Inititation | ALFRED</title>
+    <title>Initiation | ALFRED</title>
 </head>
 
 <body>
+    <button id="skip-intro">Skip Intro</button>
 
-    <p id="p1" class="intro-p"><span class="team-intro">The Skywalkers</span> present <span
+    <p id="p1" class="intro-p intro-auto">The <span class="team-intro">Skywalkers</span> present <span
             class="ai-intro">ALFRED</span></p>
-    <p id="p2" class="intro-p">The Autonomous Learning Framework for Reasoning, Explanation & Decision-making</p>
-    <p id="p3" class="intro-p">Let's make <span class="ai-intro">ALFRED</span> truly yours.</p>
+    <p id="p2" class="intro-p intro-auto" style="animation-delay: 2.5s;">The Autonomous Learning Framework for
+        Reasoning, Explanation & Decision-making</p>
+    <p id="p3" class="intro-p intro-auto" style="animation-delay: 5s;">Let's make <span class="ai-intro">ALFRED</span>
+        truly yours.</p>
 
-    <div id="name-stage">
+    <div id="name-stage" class="hidden stage-center">
         <p class="username-prompt">What shall we call you?</p>
-        <input type="text" id="username" class="intro-tile-name" placeholder="Bruce Wayne" autocomplete="off" autofocus>
+        <input type="text" id="username" class="auth-tile tile-input" placeholder="Bruce Wayne" autocomplete="off"
+            autofocus>
     </div>
 
-    <div id="comment-name" class="hidden">
+    <div id="comment-name" class="hidden stage-center">
         <p class="username-prompt">I am sorry you have to live with that.</p>
     </div>
 
-    <div id="age-stage" class="hidden">
+    <div id="age-stage" class="hidden stage-center">
         <p class="username-prompt">How long has it been since you graced this planet?</p>
-        <input type="number" id="userage" class="intro-tile-name" placeholder="21" autocomplete="off">
+        <input type="number" id="userage" class="auth-tile tile-input" placeholder="21" autocomplete="off">
     </div>
 
-    <div id="comment-age" class="hidden">
+    <div id="comment-age" class="hidden stage-center">
         <p class="username-prompt stagger-1">Damn!</p>
         <p class="username-prompt secondary-line stagger-2">Apologies, my allergies were acting up.</p>
         <p class="username-prompt tertiary-line stagger-3">Anyway...</p>
     </div>
 
-    <div id="account-confirmation" class="hidden">
+    <div id="account-confirmation" class="hidden stage-center">
         <p class="account-prompt">Do you have an account with us?</p>
-        <form>
-            <input type="radio" id="yes" name="agreement" value="yes">
-            <label for="yes">I have an account</label><br>
-  
-            <input type="radio" id="no" name="agreement" value="no">
-            <label for="no">I do not have an account</label>
-        </form>
+        <div class="btn-stack">
+            <button class="auth-tile tile-btn choice-btn" data-destination="signIn">I have an account</button>
+            <button class="auth-tile tile-btn choice-btn" data-destination="accountCreate">I do not have an
+                account</button>
+        </div>
     </div>
 
-    <div id="account-creation-confirmation" class="hidden">
+    <div id="account-creation-confirmation" class="hidden stage-center">
         <p class="account-prompt">Would you like to create one?</p>
-        <form>
-            <input type="radio" id="yes" name="agreement" value="yes">
-            <label for="yes">Yes</label> <br>
-  
-            <input type="radio" id="no" name="agreement" value="no">
-            <label for="no">Use system as a Guest</label>
-        </form>
+        <div class="btn-stack">
+            <button class="auth-tile tile-btn choice-btn" data-destination="signUp">Yes, let's do it</button>
+            <button class="auth-tile tile-btn choice-btn" data-destination="guest">Use system as a Guest</button>
+        </div>
     </div>
 
-    <div id="sign-up-page" class="hidden">
-        <p class="email-prompt">Please enter the email you would like to use for your account.</p>
-        <input type="text" id="user-email" class="intro-tile-name" placeholder="person@something.com" autocomplete="off">
-        <p class="password-prompt">Choose a password for your account.</p>
-        <input type="text" id="user-password" class="intro-tile-name" placeholder="totally-secure6969" autocomplete="off">
+    <div id="sign-up-page" class="hidden stage-center">
+        <p class="email-prompt">Create your credentials.</p>
+        <input type="email" class="auth-tile tile-input" placeholder="email@domain.com" autocomplete="off">
+        <input type="password" class="auth-tile tile-input auth-password" placeholder="password"
+            style="margin-top: 20px;">
+        <p class="helper-text">Press Enter to Register</p>
     </div>
 
-    <div id="sign-in-page" class="hidden">
-        <p class="email-prompt">Welcome back, </p>
-        <input type="text" id="user-email" class="intro-tile-name" placeholder="person@something.com" autocomplete="off">
-        <p class="password-prompt">Choose a password for your account.</p>
-        <input type="text" id="user-password" class="intro-tile-name" placeholder="totally-secure6969" autocomplete="off">
+    <div id="sign-in-page" class="hidden stage-center">
+        <p class="email-prompt">Welcome back, <span class="signin-name" style="color: var(--frost-tint);"></span>.</p>
+        <input type="email" class="auth-tile tile-input" placeholder="email@domain.com" autocomplete="off">
+        <input type="password" class="auth-tile tile-input auth-password" placeholder="password"
+            style="margin-top: 20px;">
+        <p class="helper-text">Press Enter to Sign In</p>
     </div>
 
-    <div id="welcome-stage" class="hidden">
+    <div id="welcome-stage" class="hidden stage-center">
         <p class="username-prompt">Welcome, <span id="display-name" style="color: var(--frost-tint);"></span>.</p>
-        <a href="/chat/" id="final-link" class="intro-tile-name link-button">Step into the Future</a>
+        <a href="" id="final-link" class="auth-tile tile-btn link-button">Step into the Future</a>
     </div>
 
     <script src="js/main.js"></script>

@@ -2,12 +2,14 @@
     --bg-primary: #080808;
     --bg-surface: #141414;
     --text-main: #F4FDFF;
-    --accent-glow-faint: rgba(255, 255, 255, 0.3);
+    --accent-glow: rgba(255, 255, 255, 0.12);
     --frost-tint: #A5B4C2;
     --border-med: #404040;
+    --tile-width: 220px;
 }
 
-html, body {
+html,
+body {
     background-color: var(--bg-primary);
     margin: 0;
     height: 100vh;
@@ -17,94 +19,205 @@ html, body {
     color: var(--text-main);
 }
 
-.intro-p, .username-prompt, .intro-tile-name, .account-prompt, .email-prompt, .password-prompt, form {
-    opacity: 0;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-/* Positioning */
-.intro-p, .username-prompt, .account-prompt, .email-prompt { top: 35%; width: 80%; font-size: 1.2rem; letter-spacing: 0.15em; font-style: italic; }
-.intro-tile-name, form, .password-prompt { top: 50%; }
-.password-prompt { top: 60%; }
-#user-password { top: 70%; }
-
-/* Input Styling */
-.intro-tile-name {
-    height: 35px;
-    width: 280px;
-    outline: none;
+/* Common Tile Style */
+.auth-tile {
+    height: 38px;
+    width: var(--tile-width);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-med);
-    border-radius: 12px;
-    padding: 5px 15px;
+    border-radius: 10px;
+    padding: 0 15px;
     color: var(--text-main);
+    font-family: inherit;
+    font-style: italic;
+    box-sizing: border-box;
     transition: all 0.8s ease;
+    opacity: 0;
 }
 
-.intro-tile-name:focus {
+.tile-input {
+    outline: none;
+    text-align: left;
+}
+
+.tile-input:focus {
     border-color: var(--frost-tint);
-    box-shadow: 0 0 15px var(--accent-glow-faint);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* Radio Button Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    width: fit-content;
-}
-
-input[type="radio"] {
-    accent-color: var(--frost-tint);
-    margin-right: 10px;
+.tile-btn {
     cursor: pointer;
-}
-
-label {
-    cursor: pointer;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-}
-
-/* Buttons */
-.link-button {
-    text-decoration: none;
-    line-height: 35px;
-    font-weight: bold;
-    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px var(--accent-glow-faint);
-    color: var(--bg-primary);
-    background: var(--text-main);
+    text-align: center;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.tile-btn:hover {
+    border-color: var(--frost-tint);
+    background-color: #1c1c1c;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Positioning */
+.stage-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Skip Intro */
+#skip-intro {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid var(--border-med);
+    color: var(--frost-tint);
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 0.75rem;
+}
+
+/* Text Elements */
+.intro-p,
+.username-prompt,
+.account-prompt,
+.email-prompt,
+.helper-text {
+    opacity: 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.intro-p,
+.username-prompt,
+.account-prompt,
+.email-prompt {
+    font-size: 1.2rem;
+    font-style: italic;
+    letter-spacing: 0.15em;
+}
+
+.helper-text {
+    font-size: 0.7rem;
+    opacity: 0.4;
+    letter-spacing: 2px;
+    margin-top: 20px;
+}
+
+/* The Final Button Style */
+.link-button {
+    background-color: var(--text-main) !important;
+    color: var(--bg-primary) !important;
+    font-weight: bold;
+    border: none;
+}
+
+.link-button:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
 }
 
 /* Animations */
-.exit-now { animation: vanishOut 1.5s ease-in forwards !important; }
-.enter-now { animation: riseIn 2s cubic-bezier(0.2, 1, 0.3, 1) forwards !important; }
+.exit-now {
+    animation: vanishOut 1.5s ease-in forwards !important;
+}
+
+.enter-now {
+    animation: riseIn 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards !important;
+}
+
+.intro-auto {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    animation: riseAndVanish 4s ease-in-out forwards;
+}
 
 @keyframes riseAndVanish {
-    0% { opacity: 0; transform: translate(-50%, 20px); filter: blur(10px); }
-    15%, 85% { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
-    100% { opacity: 0; transform: translate(-50%, -100px); filter: blur(5px); }
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 15px);
+        filter: blur(10px);
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -70px);
+        filter: blur(8px);
+    }
 }
 
 @keyframes riseIn {
-    0% { opacity: 0; transform: translate(-50%, 20px); filter: blur(10px); }
-    100% { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 @keyframes vanishOut {
-    0% { opacity: 1; transform: translate(-50%, -50%); filter: blur(0); }
-    100% { opacity: 0; transform: translate(-50%, -120px); filter: blur(10px); }
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100px);
+        filter: blur(10px);
+    }
 }
 
-/* Helpers */
-.hidden { display: none !important; }
-.secondary-line { top: 45% !important; }
-.tertiary-line { top: 55% !important; }
+.hidden {
+    display: none !important;
+}
+
+/* Stagger Logic */
+.secondary-line,
+.tertiary-line {
+    margin-top: 10px;
+}
+
+.stagger-1 {
+    animation-delay: 0s;
+}
+
+.stagger-2 {
+    animation-delay: 1.5s;
+}
+
+.stagger-3 {
+    animation-delay: 3s;
+}
