@@ -61,6 +61,11 @@ body {
     box-shadow: 0 0 15px var(--accent-glow);
 }
 
+.ai-intro,
+.team-intro {
+    color: var(--frost-tint);
+}
+
 /* Positioning */
 .stage-center {
     position: absolute;
