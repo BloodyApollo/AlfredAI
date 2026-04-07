@@ -129,8 +129,8 @@ body {
 
 /* The Final Button Style */
 .link-button {
-    background-color: var(--text-main) !important;
-    color: var(--bg-primary) !important;
+    background-color: var(--bg-surface) !important;
+    color: var(--frost-tint) !important;
     font-weight: bold;
     border: none;
 }
