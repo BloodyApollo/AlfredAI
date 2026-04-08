@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
     const userData = { name: "", age: null };
     let introSkipped = false;
 
