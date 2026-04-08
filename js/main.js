@@ -94,4 +94,4 @@ window.onload = () => {
     function updateFinalLink() {
         document.getElementById('final-link').href = `/chat/?name=${encodeURIComponent(userData.name)}&age=${userData.age}`;
     }
-});
+};
