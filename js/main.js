@@ -1,3 +1,20 @@
+// At the top of main.js, before window.onload
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD3vLlV3xb66GuNS9Uh95DYlhzH7_46t-M", // same as firebase.js
+  authDomain: "alfredai-31818.firebaseapp.com",
+  projectId: "alfredai-31818",
+  storageBucket: "alfredai-31818.firebasestorage.app",
+  messagingSenderId: "527412585974",
+  appId: "1:527412585974:web:9ece6143efd9c41a0893d7",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
 window.onload = () => {
     const userData = { name: "", age: null };
     let introSkipped = false;
@@ -82,16 +99,35 @@ window.onload = () => {
     });
 
     // Handle Password Submit
-    document.querySelectorAll('.auth-password').forEach(input => {
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                transitionTo(e.target.closest('.stage-center'), stages.welcome);
-                updateFinalLink();
-            }
-        });
-    });
+    // Replace the existing querySelectorAll('.auth-password') block with this:
+document.querySelectorAll('.auth-password').forEach(input => {
+    input.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter') {
+            const stage = e.target.closest('.stage-center');
+            const email = stage.querySelector('input[type="email"]').value.trim();
+            const password = e.target.value;
+            const isSignUp = stage.id === 'sign-up-page';
 
-    function updateFinalLink() {
-        document.getElementById('final-link').href = `/chat/?name=${encodeURIComponent(userData.name)}&age=${userData.age}`;
-    }
+            try {
+                let userCredential;
+                if (isSignUp) {
+                    userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                } else {
+                    userCredential = await signInWithEmailAndPassword(auth, email, password);
+                }
+                const uid = userCredential.user.uid;
+                updateFinalLink(uid);
+                transitionTo(stage, stages.welcome);
+            } catch (err) {
+                alert("Auth error: " + err.message); // you can make this prettier later
+            }
+        }
+    });
+});
+
+    function updateFinalLink(uid = 'guest') {
+    document.getElementById('final-link').href = 
+        `/chat/?name=${encodeURIComponent(userData.name)}&age=${userData.age}&uid=${uid}`;
+}
+
 };
