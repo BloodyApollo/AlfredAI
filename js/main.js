@@ -1,19 +1,17 @@
-// At the top of main.js, before window.onload
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD3vLlV3xb66GuNS9Uh95DYlhzH7_46t-M", // same as firebase.js
+  apiKey: "AIzaSyD3vLlV3xb66GuNS9Uh95DYlhzH7_46t-M",
   authDomain: "alfredai-31818.firebaseapp.com",
   projectId: "alfredai-31818",
   storageBucket: "alfredai-31818.firebasestorage.app",
   messagingSenderId: "527412585974",
-  appId: "1:527412585974:web:9ece6143efd9c41a0893d7",
+  appId: "1:527412785974:web:9ece6143efd9c41a0893d7",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 
 window.onload = () => {
     const userData = { name: "", age: null };
@@ -35,7 +33,6 @@ window.onload = () => {
         currentStage.querySelectorAll('p, input, button, .btn-stack, a').forEach(el => {
             el.classList.add('exit-now');
         });
-
         setTimeout(() => {
             currentStage.classList.add('hidden');
             nextStage.classList.remove('hidden');
@@ -59,14 +56,11 @@ window.onload = () => {
     document.getElementById('skip-intro').addEventListener('click', startApp);
     setTimeout(startApp, 9000);
 
-    // Handle Name Input
     document.getElementById('username').addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && e.target.value.trim() !== "") {
             userData.name = e.target.value.trim();
-            // Update all name displays immediately
             document.getElementById('display-name').textContent = userData.name;
             document.querySelector('.signin-name').textContent = userData.name;
-
             transitionTo(stages.name, stages.commentName);
             setTimeout(() => {
                 transitionTo(stages.commentName, stages.age);
@@ -75,7 +69,6 @@ window.onload = () => {
         }
     });
 
-    // Handle Age Input
     document.getElementById('userage').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             userData.age = e.target.value || "Timeless";
@@ -84,7 +77,6 @@ window.onload = () => {
         }
     });
 
-    // Handle Button Clicks
     document.body.addEventListener('click', (e) => {
         if (e.target.classList.contains('choice-btn')) {
             const dest = e.target.getAttribute('data-destination');
@@ -98,36 +90,43 @@ window.onload = () => {
         }
     });
 
-    // Handle Password Submit
-    // Replace the existing querySelectorAll('.auth-password') block with this:
-document.querySelectorAll('.auth-password').forEach(input => {
-    input.addEventListener('keypress', async (e) => {
-        if (e.key === 'Enter') {
-            const stage = e.target.closest('.stage-center');
-            const email = stage.querySelector('input[type="email"]').value.trim();
-            const password = e.target.value;
-            const isSignUp = stage.id === 'sign-up-page';
+    document.querySelectorAll('.auth-password').forEach(input => {
+        input.addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                const stage = e.target.closest('.stage-center');
+                const email = stage.querySelector('input[type="email"]').value.trim();
+                const password = e.target.value;
+                const isSignUp = stage.id === 'sign-up-page';
 
-            try {
-                let userCredential;
-                if (isSignUp) {
-                    userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                } else {
-                    userCredential = await signInWithEmailAndPassword(auth, email, password);
+                try {
+                    let userCredential;
+                    if (isSignUp) {
+                        userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    } else {
+                        userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    }
+                    const uid = userCredential.user.uid;
+                    updateFinalLink(uid);
+                    transitionTo(stage, stages.welcome);
+                } catch (err) {
+                    if (err.code === 'auth/email-already-in-use') {
+                        alert("That email already has an account. Try signing in instead.");
+                    } else if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+                        alert("Wrong email or password.");
+                    } else if (err.code === 'auth/invalid-email') {
+                        alert("That doesn't look like a valid email.");
+                    } else if (err.code === 'auth/weak-password') {
+                        alert("Password should be at least 6 characters.");
+                    } else {
+                        alert("Something went wrong: " + err.message);
+                    }
                 }
-                const uid = userCredential.user.uid;
-                updateFinalLink(uid);
-                transitionTo(stage, stages.welcome);
-            } catch (err) {
-                alert("Auth error: " + err.message); // you can make this prettier later
             }
-        }
+        });
     });
-});
 
     function updateFinalLink(uid = 'guest') {
-    document.getElementById('final-link').href = 
-        `/chat/?name=${encodeURIComponent(userData.name)}&age=${userData.age}&uid=${uid}`;
-}
-
+        document.getElementById('final-link').href =
+            `/chat/?name=${encodeURIComponent(userData.name)}&age=${userData.age}&uid=${uid}`;
+    }
 };
