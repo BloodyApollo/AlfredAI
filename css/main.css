@@ -156,6 +156,137 @@ body {
     animation: riseAndVanish 4s ease-in-out forwards;
 }
 
+
+
+.footer-vertical-line-1 {
+    position: fixed;
+    bottom: 1vh;
+    left: 50vw;
+
+    /* Use border-left for verticality */
+    border-left: 2px solid var(--bg-surface);
+
+    /* Width must be 0 so the border is the only thing visible */
+    width: 0;
+
+    /* This determines how tall the line is */
+    height: 3%;
+}
+
+.footer-horizontal-line {
+    position: fixed;
+    bottom: 5vh;
+    left: 10vw;
+
+    /* Thickness, style, and color */
+    border-top: 2px solid var(--bg-surface);
+
+    width: 80%;
+
+}
+
+.footer-vertical-line-1 {
+    position: fixed;
+    bottom: 1vh;
+    left: 50vw;
+
+    /* Use border-left for verticality */
+    border-left: 2px solid var(--bg-surface);
+
+    /* Width must be 0 so the border is the only thing visible */
+    width: 0;
+
+    /* This determines how tall the line is */
+    height: 3%;
+}
+
+.footer-vertical-line-2 {
+    position: fixed;
+    bottom: 1vh;
+    left: 43vw;
+
+    /* Use border-left for verticality */
+    border-left: 2px solid var(--bg-surface);
+
+    /* Width must be 0 so the border is the only thing visible */
+    width: 0;
+
+    /* This determines how tall the line is */
+    height: 3%;
+}
+
+.footer-vertical-line-3 {
+    position: fixed;
+    bottom: 1vh;
+    right: 44vw;
+
+    /* Use border-left for verticality */
+    border-left: 2px solid var(--bg-surface);
+
+    /* Width must be 0 so the border is the only thing visible */
+    width: 0;
+
+    /* This determines how tall the line is */
+    height: 3%;
+}
+
+
+#mymru-link {
+    position: fixed;
+    bottom: 1.2vh;
+    left: 39vw;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#grad-link {
+    position: fixed;
+    bottom: 1.2vh;
+    left: 44vw;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#d2l-link {
+    position: fixed;
+    bottom: 1.2vh;
+    right: 45vw;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#courses-link {
+    position: fixed;
+    bottom: 1.2vh;
+    right: 37vw;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.link-text-1 {
+    position: fixed;
+    bottom: 2.5vw;
+    left: 44vw;
+    font-size: 18px;
+    color: var(--frost-tint);
+}
+
+.link-text-2 {
+    position: fixed;
+    bottom: 2.5vw;
+    right: 10vw;
+    font-size: 18px;
+    color: var(--frost-tint);
+}
+
 @keyframes riseAndVanish {
     0% {
         opacity: 0;
