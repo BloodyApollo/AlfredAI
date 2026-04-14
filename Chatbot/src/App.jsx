@@ -16,7 +16,7 @@ function Chat() {
   const userId = params.get('uid') || 'guest'
   const [sessionId] = useState(() => uuidv4())
 
-  
+
 async function generateSummary(messages) {
     const fullChat = messages.map(m => `${m.sender}: ${m.text}`).join("\n");
     const summary = await sendMessage(
@@ -43,7 +43,7 @@ async function generateSummary(messages) {
       } catch (err) {
         console.error("Auto-save error:", err);
       }
-    }, 3600000); // every hour
+    }, 8 * 60 * 1000); // every 5 minutes
 
     return () => clearInterval(interval);
   }, [messages]);
